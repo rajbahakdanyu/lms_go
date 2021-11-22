@@ -6,15 +6,15 @@ import (
 	"strings"
 )
 
-func check(e error) {
+func Check(e error) {
 	if e != nil {
 		panic(e)
 	}
 }
 
-func GetBooklist() {
+func DisplayBooklist() {
 	dat, err := os.ReadFile("booklist.txt")
-	check(err)
+	Check(err)
 
 	println("Book Id\tBook Name\tAuthor\t\tQuantity\tPrice")
 	for index, i := range strings.Split(string(dat), "\n") {
