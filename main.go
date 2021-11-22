@@ -18,6 +18,7 @@ func main() {
 		fmt.Println("Select an action by pressing \n1. For Borrowing a Book \n2. For Returning a Book \n3. To Exit")
 		text, _ := reader.ReadString('\n')
 		choice := strings.TrimSpace(text)
+		println()
 
 		switch choice {
 		case "1":

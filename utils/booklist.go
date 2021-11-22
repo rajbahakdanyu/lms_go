@@ -1,7 +1,27 @@
 package utils
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"strings"
+)
+
+func check(e error) {
+	if e != nil {
+		panic(e)
+	}
+}
 
 func GetBooklist() {
-	fmt.Println("Booklist")
+	dat, err := os.ReadFile("booklist.txt")
+	check(err)
+
+	println("Book Id\tBook Name\tAuthor\t\tQuantity\tPrice")
+	for index, i := range strings.Split(string(dat), "\n") {
+		if index < len(strings.Split(string(dat), "\n"))-1 {
+			x := strings.Split(i, ",")
+			println(fmt.Sprintf("%v\t%v\t%v\t%v\t\t%v", x[0], x[1], x[2], x[3], x[4]))
+		}
+	}
+	println()
 }
