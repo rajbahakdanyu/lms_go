@@ -16,7 +16,14 @@ func Borrow() {
 	choice := strings.TrimSpace(text)
 
 	if choice != "" {
-		println(choice)
+		dat, err := os.ReadFile("name_list.txt")
+		Check(err)
+
+		if strings.Contains(string(dat), choice) {
+			println("Old Borrower")
+		} else {
+			println("New Borrower")
+		}
 	} else {
 		println("Please enter a name")
 		Borrow()
