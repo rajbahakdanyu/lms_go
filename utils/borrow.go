@@ -31,7 +31,10 @@ func Borrow() {
 }
 
 func old_borrower(name string) {
-	println(name + " is an old Borrower")
+	dat, err := os.ReadFile(fmt.Sprintf("members/%v.txt", name))
+	Check(err)
+
+	println(string(dat))
 }
 
 func new_borrower(name string) {
