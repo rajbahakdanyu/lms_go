@@ -19,7 +19,7 @@ func main() {
 
 		switch choice {
 		case "1":
-			fmt.Println("one")
+			get_booklist()
 		case "2":
 			fmt.Println("two")
 		case "3":
