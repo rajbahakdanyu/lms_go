@@ -20,12 +20,20 @@ func Borrow() {
 		Check(err)
 
 		if strings.Contains(string(dat), choice) {
-			println("Old Borrower")
+			old_borrower(choice)
 		} else {
-			println("New Borrower")
+			new_borrower(choice)
 		}
 	} else {
 		println("Please enter a name")
 		Borrow()
 	}
+}
+
+func old_borrower(name string) {
+	println(name + " is an old Borrower")
+}
+
+func new_borrower(name string) {
+	println(name + " is an new Borrower")
 }
