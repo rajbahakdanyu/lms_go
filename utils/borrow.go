@@ -2,6 +2,7 @@ package utils
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"regexp"
 	"strings"
@@ -29,8 +30,8 @@ func Borrow() {
 }
 
 func old_borrower(name string) {
-	// dat, err := os.ReadFile(fmt.Sprintf("members/%v.txt", name))
-	// Check(err)
+	dat, err := os.ReadFile(fmt.Sprintf("members/%v.txt", name))
+	Check(err)
 
 	DisplayBooklist()
 	booklist := GetBooklist()
@@ -44,6 +45,7 @@ func old_borrower(name string) {
 
 	if r.MatchString(choice) {
 		check_book := false
+		check_available := true
 		var x string
 
 		for _, j := range booklist {
@@ -55,9 +57,22 @@ func old_borrower(name string) {
 		}
 
 		if check_book {
-			println("user has chosen " + x)
+			for index, i := range strings.Split(string(dat), "\n") {
+				if index < len(strings.Split(string(dat), "\n"))-1 {
+					if strings.Split(i, ",")[1] == string(x[0]) && strings.Split(i, ",")[4] == "not returned" {
+						check_available = false
+					}
+				}
+			}
+
+			if check_available {
+				println("User can borrow book\n")
+			} else {
+				println("User cannot borrow book\n")
+
+			}
 		} else {
-			println("Book does not exist")
+			println("Book does not exist\n")
 		}
 	} else {
 		println("Book Id should be a number\n")
