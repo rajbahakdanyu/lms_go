@@ -22,7 +22,7 @@ func main() {
 
 		switch choice {
 		case "1":
-			utils.GetBooklist()
+			utils.Borrow()
 		case "2":
 			fmt.Println("two")
 		case "3":
