@@ -2,6 +2,6 @@ package utils
 
 import "fmt"
 
-func get_booklist() {
+func GetBooklist() {
 	fmt.Println("Booklist")
 }

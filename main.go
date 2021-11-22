@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/rajbahakdanyu/lms_go/utils"
 )
 
 func main() {
@@ -19,7 +21,7 @@ func main() {
 
 		switch choice {
 		case "1":
-			fmt.Println("one")
+			utils.GetBooklist()
 		case "2":
 			fmt.Println("two")
 		case "3":
