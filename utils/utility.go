@@ -25,3 +25,10 @@ func DisplayBooklist() {
 	}
 	println()
 }
+
+func GetBooklist() []string {
+	dat, err := os.ReadFile("booklist.txt")
+	Check(err)
+
+	return strings.Split(string(dat), "\n")
+}
