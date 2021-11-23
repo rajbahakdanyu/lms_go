@@ -2,6 +2,7 @@ package utils
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"regexp"
 	"strconv"
@@ -82,7 +83,18 @@ func old_borrower(name string) {
 }
 
 func old_write(name string, book []string) {
-	println("User can borrow book\n")
+	fmt.Printf("The price for %v is %v\n", book[1], book[4])
+
+	reader := bufio.NewReader(os.Stdin)
+	println("Has total amount been paid(y/n)?")
+	text, _ := reader.ReadString('\n')
+	choice := strings.TrimSpace(text)
+
+	if strings.ToLower(choice) == "y" {
+		println("Book was borrowed")
+	} else {
+		println("Book was not borrowed")
+	}
 }
 
 func new_borrower(name string) {
