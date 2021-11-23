@@ -108,7 +108,7 @@ func old_write(name string, book []string) {
 		_, e := f.WriteString(fmt.Sprintf("%v,%v,%v,%v,not returned\n", book[0], book[4], borrow_date, return_date))
 
 		if e == nil {
-
+			Database("b", book)
 		} else {
 			log.Println(e)
 		}
