@@ -2,7 +2,6 @@ package utils
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"regexp"
 	"strings"
@@ -30,8 +29,7 @@ func Borrow() {
 }
 
 func old_borrower(name string) {
-	dat, err := os.ReadFile(fmt.Sprintf("members/%v.txt", name))
-	Check(err)
+	dat := GetReturnlist(name)
 
 	DisplayBooklist()
 	booklist := GetBooklist()
@@ -57,8 +55,8 @@ func old_borrower(name string) {
 		}
 
 		if check_book {
-			for index, i := range strings.Split(string(dat), "\n") {
-				if index < len(strings.Split(string(dat), "\n"))-1 {
+			for index, i := range dat {
+				if index < len(dat)-1 {
 					if strings.Split(i, ",")[1] == string(x[0]) && strings.Split(i, ",")[4] == "not returned" {
 						check_available = false
 					}
