@@ -66,7 +66,7 @@ func old_borrower(name string) {
 			if check_available {
 				stock, _ := strconv.Atoi(x[3])
 				if stock > 0 {
-					println("User can borrow book\n")
+					old_write(name, x)
 				} else {
 					println("Sorry book is out of stock\n")
 				}
@@ -79,6 +79,10 @@ func old_borrower(name string) {
 	} else {
 		println("Book Id should be a number\n")
 	}
+}
+
+func old_write(name string, book []string) {
+	println("User can borrow book\n")
 }
 
 func new_borrower(name string) {
