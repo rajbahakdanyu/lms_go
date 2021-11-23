@@ -3,6 +3,7 @@ package utils
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"regexp"
 	"strconv"
@@ -96,7 +97,21 @@ func old_write(name string, book []string) {
 		borrow_date := now.Format("2006-01-02")
 		return_date := now.AddDate(0, 1, 0).Format("2006-01-02")
 
-		fmt.Printf("current: %v, return: %v\n", borrow_date, return_date)
+		f, err := os.OpenFile(fmt.Sprintf("members/%v.txt", name), os.O_RDWR|os.O_APPEND, 0660)
+
+		if err != nil {
+			log.Println(err)
+		}
+
+		defer f.Close()
+
+		_, e := f.WriteString(fmt.Sprintf("%v,%v,%v,%v,not returned\n", book[0], book[4], borrow_date, return_date))
+
+		if e == nil {
+
+		} else {
+			log.Println(e)
+		}
 	} else {
 		println("Book was not borrowed")
 	}
