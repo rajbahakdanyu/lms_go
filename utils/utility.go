@@ -32,3 +32,10 @@ func GetBooklist() []string {
 
 	return strings.Split(string(dat), "\n")
 }
+
+func GetReturnlist(name string) []string {
+	dat, err := os.ReadFile(fmt.Sprintf("members/%v.txt", name))
+	Check(err)
+
+	return strings.Split(string(dat), "\n")
+}
