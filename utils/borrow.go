@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
 )
 
@@ -44,14 +45,13 @@ func old_borrower(name string) {
 	if r.MatchString(choice) {
 		check_book := false
 		check_available := true
-		var x string
+		var x []string
 
 		for _, j := range booklist {
 			if strings.Split(j, ",")[0] == choice {
 				check_book = true
-				x = j
+				x = strings.Split(j, ",")
 			}
-
 		}
 
 		if check_book {
@@ -64,10 +64,14 @@ func old_borrower(name string) {
 			}
 
 			if check_available {
-				println("User can borrow book\n")
+				stock, _ := strconv.Atoi(x[3])
+				if stock > 0 {
+					println("User can borrow book\n")
+				} else {
+					println("Sorry book is out of stock\n")
+				}
 			} else {
 				println("User cannot borrow book\n")
-
 			}
 		} else {
 			println("Book does not exist\n")
