@@ -105,7 +105,7 @@ func old_write(name string, book []string) {
 
 		defer f.Close()
 
-		_, e := f.WriteString(fmt.Sprintf("%v,%v,%v,%v,not returned\n", book[0], book[4], borrow_date, return_date))
+		_, e := f.WriteString(fmt.Sprintf("%v,%v,%v,%v,not returned\n", book[1], book[4], borrow_date, return_date))
 
 		if e == nil {
 			Database("b", book)
