@@ -7,6 +7,7 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func Borrow() {
@@ -91,7 +92,11 @@ func old_write(name string, book []string) {
 	choice := strings.TrimSpace(text)
 
 	if strings.ToLower(choice) == "y" {
-		println("Book was borrowed")
+		now := time.Now().UTC()
+		borrow_date := now.Format("2006-01-02")
+		return_date := now.AddDate(0, 1, 0).Format("2006-01-02")
+
+		fmt.Printf("current: %v, return: %v\n", borrow_date, return_date)
 	} else {
 		println("Book was not borrowed")
 	}
