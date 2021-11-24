@@ -120,5 +120,40 @@ func old_write(name string, book []string) {
 }
 
 func new_borrower(name string) {
-	println(name + " is an new Borrower")
+	DisplayBooklist()
+	booklist := GetBooklist()
+	r, _ := regexp.Compile("(^[0-9]*$)")
+
+	reader := bufio.NewReader(os.Stdin)
+	println("Enter Book Id")
+	text, _ := reader.ReadString('\n')
+	choice := strings.TrimSpace(text)
+	println()
+
+	if r.MatchString(choice) {
+		check_book := false
+		var x []string
+
+		for _, j := range booklist {
+			if strings.Split(j, ",")[0] == choice {
+				check_book = true
+				x = strings.Split(j, ",")
+			}
+		}
+
+		if check_book {
+			stock, _ := strconv.Atoi(x[3])
+			if stock > 0 {
+				new_write(name, x)
+			} else {
+				println("Sorry book is out of stock\n")
+			}
+		} else {
+			println("Book does not exist\n")
+		}
+	} else {
+		println("Book Id should be a number\n")
+	}
 }
+
+func new_write(name string, book []string) {}
