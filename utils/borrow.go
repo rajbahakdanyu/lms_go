@@ -156,4 +156,37 @@ func new_borrower(name string) {
 	}
 }
 
-func new_write(name string, book []string) {}
+func new_write(name string, book []string) {
+	fmt.Printf("The price for %v is %v\n", book[1], book[4])
+
+	reader := bufio.NewReader(os.Stdin)
+	println("Has total amount been paid(y/n)?")
+	text, _ := reader.ReadString('\n')
+	choice := strings.TrimSpace(text)
+
+	if strings.ToLower(choice) == "y" {
+		now := time.Now().UTC()
+		borrow_date := now.Format("2006-01-02")
+		return_date := now.AddDate(0, 1, 0).Format("2006-01-02")
+
+		f, err := os.Create(fmt.Sprintf("members/%v.txt", name))
+
+		if err != nil {
+			log.Println(err)
+		}
+
+		defer f.Close()
+
+		quantity := strings.TrimSpace(book[4])
+
+		_, e := f.WriteString(fmt.Sprintf("%v,%v,%v,%v,not returned\n", book[1], quantity, borrow_date, return_date))
+
+		if e == nil {
+			Database("b", book)
+		} else {
+			log.Println(e)
+		}
+	} else {
+		println("Book was not borrowed")
+	}
+}
