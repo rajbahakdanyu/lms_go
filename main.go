@@ -24,7 +24,7 @@ func main() {
 		case "1":
 			utils.Borrow()
 		case "2":
-			fmt.Println("two")
+			utils.Return()
 		case "3":
 			fmt.Println("Good Bye")
 		default:
