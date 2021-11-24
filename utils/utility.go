@@ -18,7 +18,7 @@ func DisplayBooklist() {
 
 	println("Book Id\tBook Name\tAuthor\t\tQuantity\tPrice")
 	for index, i := range strings.Split(string(dat), "\n") {
-		if index < len(strings.Split(string(dat), "\n"))-1 {
+		if index < len(strings.Split(string(dat), "\n")) {
 			x := strings.Split(i, ",")
 			println(fmt.Sprintf("%v\t%v\t%v\t%v\t\t%v", x[0], x[1], x[2], x[3], x[4]))
 		}
